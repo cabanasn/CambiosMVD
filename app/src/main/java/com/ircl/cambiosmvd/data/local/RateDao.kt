@@ -11,7 +11,7 @@ interface RateDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRates(exchanges: List<RateEntity>)
 
-    @Query("SELECT * FROM RateEntity WHERE id = :exchangeId")
+    @Query("SELECT * FROM RateEntity WHERE exchangeId = :exchangeId")
     suspend fun getRatesForExchange(exchangeId: Int): List<RateEntity>
 
     @Query("SELECT * FROM RateEntity WHERE currency = :currency")

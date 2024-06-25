@@ -16,7 +16,7 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.ircl.cambiosmvd.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -85,10 +85,17 @@ dependencies {
 
     // Testing
     testImplementation(libs.junit)
+    testImplementation(libs.androidx.core.testing)
+    androidTestImplementation(libs.androidx.core.testing)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
+    testImplementation(libs.dagger.hilt.testing)
+    testAnnotationProcessor(libs.dagger.hilt.compiler)
+    androidTestImplementation(libs.dagger.hilt.testing)
+    androidTestAnnotationProcessor(libs.dagger.hilt.compiler)
+    kaptAndroidTest(libs.hilt.compiler)
 
     // UI Debug
     debugImplementation(libs.androidx.ui.tooling)

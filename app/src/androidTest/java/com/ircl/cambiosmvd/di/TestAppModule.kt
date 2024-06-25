@@ -19,7 +19,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object AppModule {
+object TestAppModule {
     private val loggingInterceptor: HttpLoggingInterceptor = HttpLoggingInterceptor().apply {
         level = HttpLoggingInterceptor.Level.BODY
     }
@@ -57,9 +57,10 @@ object AppModule {
     @Singleton
     @Provides
     fun providesExchangeDatabase(app: Application): ExchangeDatabase {
-        return Room.databaseBuilder(app, ExchangeDatabase::class.java,
-            "exchanges_database")
-            .fallbackToDestructiveMigration()
+        return Room.inMemoryDatabaseBuilder(
+                app,
+                ExchangeDatabase::class.java
+            )
             .build()
     }
 
